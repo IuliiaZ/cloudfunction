@@ -28,7 +28,7 @@ steps:
 substitutions:
   _FUNCTION_PROJECT: prod-511613
   _FUNCTION_NAME: my-nodejs-app
-  _FUNCTION_REGION: northamerica-northeast1
+  _FUNCTION_REGION: europe-west1
   _FUNCTION_RUNTIME: nodejs22
   _ENTRY_POINT: helloWorld
 
