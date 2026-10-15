@@ -1,0 +1,36 @@
+steps:
+  - name: "gcr.io/google.com/cloudsdktool/google-cloud-cli:slim"
+    entrypoint: "bash"
+    args: ["-c", 'echo "Building..."']
+    id: BUILD
+
+  - name: "gcr.io/google.com/cloudsdktool/google-cloud-cli:slim"
+    entrypoint: "bash"
+    args: ["-c", 'echo "Testing..."']
+    id: TEST
+
+  - name: "gcr.io/google.com/cloudsdktool/google-cloud-cli:slim"
+    entrypoint: "gcloud"
+    args:
+      - functions
+      - deploy
+      - $_FUNCTION_NAME
+      - --no-gen2
+      - --region=$_FUNCTION_REGION
+      - --source=.
+      - --trigger-http
+      - --allow-unauthenticated
+      - --runtime=$_FUNCTION_RUNTIME
+      - --project=$_FUNCTION_PROJECT
+      - --entry-point=$_ENTRY_POINT
+    id: DEPLOY
+
+substitutions:
+  _FUNCTION_PROJECT: prod-511613
+  _FUNCTION_NAME: my-nodejs-app
+  _FUNCTION_REGION: northamerica-northeast1
+  _FUNCTION_RUNTIME: nodejs22
+  _ENTRY_POINT: helloWorld
+
+options:
+  logging: CLOUD_LOGGING_ONLY
