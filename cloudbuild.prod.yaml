@@ -12,17 +12,15 @@ steps:
   - name: "gcr.io/google.com/cloudsdktool/google-cloud-cli:slim"
     entrypoint: "gcloud"
     args:
-      - functions
+      - run
       - deploy
       - $_FUNCTION_NAME
-      - --gen2
-      - --region=$_FUNCTION_REGION
       - --source=.
-      - --trigger-http
-      - --allow-unauthenticated
-      - --runtime=$_FUNCTION_RUNTIME
+      - --function=$_ENTRY_POINT
+      - --base-image=$_FUNCTION_RUNTIME
+      - --region=$_FUNCTION_REGION
       - --project=$_FUNCTION_PROJECT
-      - --entry-point=$_ENTRY_POINT
+      - --allow-unauthenticated
     id: DEPLOY
 
 substitutions:
