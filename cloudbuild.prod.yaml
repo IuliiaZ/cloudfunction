@@ -15,7 +15,7 @@ steps:
       - functions
       - deploy
       - $_FUNCTION_NAME
-      - --no-gen2
+      - --gen2
       - --region=$_FUNCTION_REGION
       - --source=.
       - --trigger-http
