@@ -1,5 +1,5 @@
 exports.helloWorld = (req, resp) => {
   const message =
-    "<font color='blue'>Cloud function</font><br><b>App Version 1.1</b>";
+    "<font color='blue'>Cloud function</font><br><b>App Version 1.2</b>";
   resp.status(200).send(message);
 };
